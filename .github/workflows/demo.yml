@@ -2,11 +2,11 @@
 on: push
 jobs:
   job1:
+    runs-on: ubuntu-latest
     steps:
-      runs-on: ubuntu:latest
       - run: pwd
       - run: ls
   job2:
+    runs-on: windows
     steps:
-      runs-on: windows
       - run: node --version
