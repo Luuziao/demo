@@ -1,9 +1,47 @@
-
 on: push
 jobs:
   npm-build:
+    name: npm-build工作
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm run build
+      - name: 读取仓库内容
+        uses: actions/checkout@v4
+
+      -name: 安装依赖
+       run: npm install
+
+      -name: 项目打包
+       run: npm run build
+
+
+
+# on: push
+# jobs:
+#   npm-build:
+#     name: npm-build工作
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 读取仓库内容
+#         uses: actions/checkout@v4
+
+#       - name: 设置Node环境
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+
+#       - name: 安装依赖
+#         run: npm install
+
+#       - name: 项目打包
+#         run: npm run build
+
+#       - name: 通过SCP上传build到远程服务器
+#         uses: appleboy/scp-action@master
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           username: ${{ secrets.SSH_USERNAME }}
+#           key: ${{ secrets.SSH_PRIVATE_KEY }}
+#           source: "build/"
+#           target: "/usr/share/nginx/html"
+#           strip_components: 1
+
